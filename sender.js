@@ -4,7 +4,9 @@
 /* global require, module, exports, console */
 (function () {
     'use strict';
-    var Kinect2 = require('kinect2'),
+    var ipAddress = '10.249.255.185',
+        port = 8000,
+        Kinect2 = require('kinect2'),
         kinect = new Kinect2(),
         sender = require('dgram').createSocket("udp4"),
         message = {};
@@ -12,7 +14,7 @@
     if (kinect.open()) {
         kinect.on('bodyFrame', function (bodies) {
             message = new Buffer(JSON.stringify(bodies[0].joints3d));
-            sender.send(message, 0, message.length, 8000, "localhost");
+            sender.send(message, 0, message.length, port, ipAddress);
             for (var i = 0; i < bodies.length; i++) {
                 console.log(bodies[i].joints3d);
             }
