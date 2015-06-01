@@ -4,7 +4,9 @@
 /* global require, module, exports, console */
 (function () {
     'use strict';
-    var Kinect2 = require('kinect2'),
+    var ipAddress = '10.249.255.185',
+        port = 8000,
+        Kinect2 = require('kinect2'),
         kinect = new Kinect2(),
         sender = require('dgram').createSocket("udp4"),
         ipAddress = "10.249.255.191",//"localhost",
